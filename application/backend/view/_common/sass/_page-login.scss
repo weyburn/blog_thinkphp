@@ -1,0 +1,87 @@
+/* 一半背景*/
+.material-half-bg {
+    height: 100vh;
+    background-color: #e7e7e7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    .cover {
+        background-color: #3888d6;
+        height: 50vh;
+    }
+}
+
+/* 登录界面*/
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    .logo {
+        margin-bottom: 40px;
+        color: #fff;
+        h1 {
+            font-size: 3rem;
+            font-weight: 400;
+        }
+    }
+    .login-box {
+        position: relative;
+        min-width: 350px;
+        min-height: 400px;
+        background-color: #fff;
+        box-shadow: 0 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0 29px 95px 0 rgba(0, 0, 0, 0.16);
+        perspective: 800px;
+        transition: all 0.5s ease-in-out;
+        .login-head {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            .fi, .icon {
+                font-size: inherit !important;
+                padding: 0 10px;
+            }
+        }
+        label {
+            color: #666;
+            font-weight: 700;
+        }
+        .utility {
+            display: flex;
+            padding: 1px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-container {
+            margin-bottom: 0;
+        }
+        .login-form {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+    }
+}
+
+@media (max-width: 351px) {
+    .login-content {
+        .login-box {
+            min-width: 100%;
+            .login-form {
+                width: 100%;
+            }
+        }
+    }
+}

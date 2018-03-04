@@ -1,0 +1,115 @@
+@import "~parsleyjs/src/parsley.css";
+
+/* 覆盖 parsley.css 的样式*/
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+    border: 2px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+    border: 2px solid #EED3D7;
+}
+
+.parsley-form-group {
+    position: relative;
+    .parsley-errors-list {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        li {
+            color: red !important;
+            &:before {
+                content: '*';
+            }
+        }
+    }
+}
+
+#comments {
+    animation: .5s fadeInDown .75s both;
+    .comment-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .comment-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 24px;
+    }
+    .comment-item {
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0 8px 36px;
+    }
+    .comment-author {
+        height: 36px;
+        line-height: 36px;
+        position: relative;
+        .avatar {
+            height: 36px;
+            width: 36px;
+            position: absolute;
+            left: -36px;
+        }
+        .name {
+            margin-left: 6px;
+            font-weight: 600;
+        }
+    }
+    .comment-content {
+        font-size: .875rem;
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        padding: 6px 0 6px 6px;
+        text-align: justify;
+        .reply {
+            color: #3888d6;
+            margin-right: 6px;
+        }
+    }
+    .comment-meta {
+        font-size: .875rem;
+        line-height: 2;
+        text-align: right;
+        position: relative;
+        .time {
+            position: absolute;
+            left: 6px;
+            top: 0;
+            color: #888;
+        }
+        .js-btn-reply {
+            color: #888;
+            &:hover {
+                color: #3888d6;
+            }
+        }
+    }
+    .btn-group {
+        text-align: right;
+        font-size: .875rem;
+        height: 20px;
+        line-height: 20px;
+        .js-btn-reply-cancel {
+            display: none;
+            color: #888;
+            &:hover {
+                color: #3888d6;
+            }
+        }
+    }
+    .comment-form {
+        .form-group {
+            font-size: .875rem;
+            .form-control {
+                font-size: inherit;
+            }
+        }
+        label.required:after {
+            content: ' * ';
+            color: #c00;
+        }
+    }
+}
+

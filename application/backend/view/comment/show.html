@@ -1,0 +1,117 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}评论{{/block}}
+
+{{block name="moduleName"}}comment{{/block}}
+{{block name="pageName"}}show{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里的内容会填充在 head 里}}
+{{/block}}
+
+{{block name="main"}}
+    {{//面包屑导航}}
+    <div class="app-title">
+        <h1>
+            <i class="fi fi-comment"></i>评论详情
+        </h1>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin"><i class="fi fi-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin/comment">评论管理</a></li>
+            <li class="breadcrumb-item active">评论详情</li>
+        </ul>
+    </div>
+    {{//评论详情列表}}
+    <div class="row">
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover comment-show-list">
+                            <tbody>
+                            <tr>
+                                <th scope="row" width="25%">评论ID</th>
+                                <td>{{$comment->id}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">评论者名称</th>
+                                <td>{{$comment->name|htmlspecialchars}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">评论者邮箱</th>
+                                <td>{{$comment->email|htmlspecialchars}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">评论者网址</th>
+                                <td>{{$comment->website|htmlspecialchars}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">评论者ip地址</th>
+                                <td>{{$comment->ip}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">所评文章</th>
+                                <td>
+                                    <a href="{{$Request.root.true}}/admin/post/{{$comment->post->id}}"
+                                    title="{{$comment->post->published_at}}">
+                                        <i class="fi fi-post"></i>{{$comment->post->title}}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">评论内容</th>
+                                <td>
+                                    {{if condition="$comment->reply_id"}}
+                                        <a href="{{$Request.root.true}}/admin/comment/{{$comment->reply_id}}">
+                                            回复{{$comment->reply_name|htmlspecialchars}}
+                                        </a>
+                                    {{/if}}
+                                    {{$comment->content|htmlspecialchars}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">状态</th>
+                                <td>
+                                    {{if condition="$comment->status == 1"}}
+                                        <span>已读</span>
+                                    {{else/}}
+                                        <span>未读</span>
+                                        <a class="btn btn-sm btn-outline-secondary js-btn-update" href="javascript:"
+                                           data-m-id="{{$comment->id}}">
+                                        标记为已读</a>
+                                    {{/if}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">创建时间</th>
+                                <td>{{$comment->created_at}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <ul class="pagination justify-content-center">
+                        {{if condition="$prev_comment_id"}}
+                            <li class="page-item">
+                                <a class="page-link" href="{{$Request.root.true}}/admin/comment/{{$prev_comment_id}}">
+                                    <i class="fi fi-previous"></i>上一页
+                                </a>
+                            </li>
+                        {{/if}}
+                        {{if condition="$next_comment_id"}}
+                            <li class="page-item">
+                                <a class="page-link" href="{{$Request.root.true}}/admin/comment/{{$next_comment_id}}">
+                                    下一页 <i class="fi fi-next"></i>
+                                </a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里的内容会填充在 body 底部上面}}
+{{/block}}

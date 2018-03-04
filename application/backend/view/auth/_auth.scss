@@ -1,0 +1,30 @@
+@import '../_common/sass/page-login';
+@import "~parsleyjs/src/parsley.css";
+
+/* 覆盖 parsley.css 的样式*/
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+    border: 2px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+    border: 2px solid #EED3D7;
+}
+
+.parsley-form-group {
+    position: relative;
+    .parsley-errors-list {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        li {
+            color: red !important;
+            &:before {
+                content: '*';
+            }
+        }
+    }
+}

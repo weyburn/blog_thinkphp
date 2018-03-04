@@ -1,0 +1,43 @@
+.page--about {
+    .about {
+        padding-top: 40px;
+        animation: .5s fadeInDown .5s both;
+        @media (max-width: 767px) {
+            padding: 40px 20px 0;
+        }
+    }
+}
+
+.page--about-index {
+    .about-header {
+        text-align: center;
+        margin-bottom: 20px;
+        .title {
+            font-size: 1.75rem;
+            font-weight: 400;
+            @media (max-width: 767px) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+    .about-body {
+        text-align: justify;
+        line-height: 2;
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        .sub-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        p {
+            text-indent: 2em;
+            font-size: .875rem;
+        }
+        .link {
+            border-bottom: 1px solid #888;
+            padding-bottom: 1px;
+            &:hover {
+                border-color: #222;
+            }
+        }
+    }
+}

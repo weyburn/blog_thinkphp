@@ -1,0 +1,75 @@
+/* 自定义多选框和单选框*/
+.animated-checkbox {
+    input[type="checkbox"] {
+        display: none;
+        + .label-text {
+            cursor: pointer !important;
+            user-select: none;
+            &:before {
+                content: "\e615";
+                font-family: "fi";
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                font-size: 1rem;
+                -webkit-font-smoothing: antialiased;
+                width: 1em;
+                display: inline-block;
+                margin-right: 2px;
+                vertical-align: -2px;
+            }
+        }
+        &:checked + .label-text:before {
+            content: "\e6c0";
+            color: #3888d6;
+            animation: tick 180ms ease-in;
+        }
+    }
+}
+
+.animated-radio {
+    input[type="radio"] {
+        display: none;
+        + .label-text {
+            cursor: pointer !important;
+            user-select: none;
+            &:before {
+                content: "\e642";
+                font-family: "fi";
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                font-size: 1rem;
+                -webkit-font-smoothing: antialiased;
+                width: 1em;
+                display: inline-block;
+                margin-right: 2px;
+                vertical-align: -2px;
+            }
+        }
+        &:checked + .label-text:before {
+            content: "\e730";
+            color: #3888d6;
+            animation: tick 180ms ease-in;
+        }
+    }
+}
+
+/* 多选框和单选框动画*/
+@keyframes tick {
+    0% {
+        transform: scale(0);
+    }
+    90% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

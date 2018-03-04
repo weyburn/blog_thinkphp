@@ -1,0 +1,31 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}标签{{/block}}
+
+{{block name="moduleName"}}tag{{/block}}
+{{block name="pageName"}}index{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里是头部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+
+{{block name="mainInner"}}
+    <section class="tag">
+        <div class="tag-header">
+            <h1 class="title">标签</h1>
+            <p class="total">【目前共计 {{$tags|count}} 个标签】</p>
+        </div>
+        {{if condition="count($tags)"}}
+            <div class="tag-group">
+                {{foreach $tags as $tag}}
+                    <a class="link" href="{{$Request.root.true}}/tag/{{$tag->name}}">{{$tag->name}}</a>
+                {{/foreach}}
+            </div>
+        {{/if}}
+    </section>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里是尾部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+

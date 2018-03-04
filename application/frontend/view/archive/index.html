@@ -1,0 +1,79 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}归档{{/block}}
+
+{{block name="moduleName"}}archive{{/block}}
+{{block name="pageName"}}index{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里是头部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+{{block name="mainInner"}}
+    <section class="archive">
+        <div class="archive-header">
+            <h1 class="title">归档</h1>
+            <p class="total">【目前共计 {{$posts|count}} 篇日志】</p>
+        </div>
+        <dl class="archive-list">
+            {{//2018文章}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2018-01-01,2018-12-31"}}
+                    <dt>
+                        <h2 class="year">2018</h2>
+                    </dt>
+                    {{php}}break;{{/php}}
+                {{/between}}
+            {{/foreach}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2018-01-01,2018-12-31"}}
+                    <dd>
+                        <span class="date" title="{{$time|substr=0,10}}">{{$time|substr=5,5}}</span>
+                        <a class="link" href="{{$Request.root.true}}/post/{{$title}}">{{$title}}</a>
+                    </dd>
+                {{/between}}
+            {{/foreach}}
+
+            {{//2017文章}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2017-01-01,2017-12-31"}}
+                    <dt>
+                        <h2 class="year">2017</h2>
+                    </dt>
+                    {{php}}break;{{/php}}
+                {{/between}}
+            {{/foreach}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2017-01-01,2017-12-31"}}
+                    <dd>
+                        <span class="date" title="{{$time|substr=0,10}}">{{$time|substr=5,5}}</span>
+                        <a class="link" href="{{$Request.root.true}}/post/{{$title}}">{{$title}}</a>
+                    </dd>
+                {{/between}}
+            {{/foreach}}
+
+            {{//2016文章}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2016-01-01,2016-12-31"}}
+                    <dt>
+                        <h2 class="year">2016</h2>
+                    </dt>
+                    {{php}}break;{{/php}}
+                {{/between}}
+            {{/foreach}}
+            {{foreach $posts as $time => $title}}
+                {{between name="time" value="2016-01-01,2016-12-31"}}
+                    <dd>
+                        <span class="date" title="{{$time|substr=0,10}}">{{$time|substr=5,5}}</span>
+                        <a class="link" href="{{$Request.root.true}}/post/{{$title}}">{{$title}}</a>
+                    </dd>
+                {{/between}}
+            {{/foreach}}
+        </dl>
+    </section>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里是尾部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+

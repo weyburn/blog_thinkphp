@@ -1,0 +1,39 @@
+#main {
+    .pagination {
+        margin: 120px auto 40px;
+        font-size: 0;
+        -webkit-text-size-adjust: none;
+        text-align: center;
+        border-top: 1px solid #ddd;
+        @media (max-width: 767px) {
+            border-top: none;
+        }
+        .page-item, .space {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            font-size: 1rem;
+        }
+        .page-item {
+            padding: 0 10px;
+            margin: 0 10px;
+            border-top: 1px solid #fff;
+            @media (max-width: 767px) {
+                margin: 5px;
+                border-top: none;
+                border-bottom: 1px solid #ddd;
+            }
+            &:hover {
+                border-color: #222;
+            }
+            &.active {
+                background: #bbb;
+                color: #fff;
+                border-color: #bbb;
+            }
+        }
+        .page-previous, .page-next {
+            padding: 0 5px;
+        }
+    }
+}

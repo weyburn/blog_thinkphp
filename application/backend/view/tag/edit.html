@@ -1,0 +1,56 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}标签{{/block}}
+
+{{block name="moduleName"}}tag{{/block}}
+{{block name="pageName"}}edit{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里的内容会填充在 head 里}}
+{{/block}}
+
+{{block name="main"}}
+    {{//面包屑导航}}
+    <div class="app-title">
+        <h1>
+            <i class="fi fi-tag"></i>修改标签
+        </h1>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin"><i class="fi fi-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin/tag">标签管理</a></li>
+            <li class="breadcrumb-item active">修改标签</li>
+        </ul>
+    </div>
+    {{//修改标签表单}}
+    <div class="row">
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <form class="form-row tag-form-edit" onsubmit="return false" data-parsley-validate>
+                        <div class="col-md-6">
+                            <div class="form-group parsley-form-group">
+                                <label class="col-form-label" for="tagNameInput">标签名称</label>
+                                <input class="form-control" id="tagNameInput" type="text" name="name" value="{{$tag->name}}"
+                                       placeholder="请输入标签名称" aria-describedby="tagHelp"
+                                       data-parsley-trigger="blur"
+                                       data-parsley-required="true" data-parsley-required-message="标签名称为必填项"
+                                       data-parsley-maxlength="36" data-parsley-maxlength-message="标签名称不得超过36个字符">
+                                <small class="form-text text-muted" id="tagHelp">标签名称请控制在36个字符以内。</small>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="panel-footer">
+                                <button class="btn btn-sm btn-primary js-btn-submit" type="submit" data-m-id="{{$tag->id}}">保存修改</button>
+                                <button class="btn btn-sm btn-secondary" type="reset">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里的内容会填充在 body 底部上面}}
+{{/block}}
+

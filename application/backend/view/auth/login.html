@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="keywords" content="Weyburn,Weyburn's Blog">
+    <meta name="description" content="个人博客,技术博客，前端学习总结">
+    <meta name="apple-mobile-web-app-title" content="Weyburn">
+    <meta name="application-name" content="Weyburn's Blog">
+
+    <link rel="shortcut icon" href="/assets/images/head-pic.jpg">
+
+    <title>Weyburn's Blog Admin</title>
+
+    {{//样式}}
+    {{if condition="isset($_gStaticFiles['styles'])"}}
+        {{foreach $_gStaticFiles['styles'] as $styleSrc}}
+            <link rel="stylesheet" href="{{$styleSrc}}">
+        {{/foreach}}
+    {{/if}}
+    <link href="https://cdn.bootcss.com/pace/1.0.2/themes/black/pace-theme-minimal.css" rel="stylesheet">
+</head>
+
+<body class="body page page--auth page--auth-login"
+      id="page--auth-login"
+      data-module-name="auth"
+      data-page-name="login"
+      data-base-url="{{$Request.root.true}}"
+      data-end-url="{{$Request.root.true}}/admin"
+      data-current-url="{{$Request.root.true}}/{{$Request.path}}">
+
+<section class="material-half-bg">
+    <div class="cover"></div>
+</section>
+
+<section class="login-content">
+    <div class="logo">
+        <h1>Admin</h1>
+    </div>
+    <div class="login-box">
+        <form class="login-form" onsubmit="return false;" data-parsley-validate>
+            <h3 class="login-head">
+                <i class="fi fi-user"></i>系统登录
+            </h3>
+            <div class="form-group parsley-form-group">
+                <label class="col-form-label" for="usernameInput">账号</label>
+                <input class="form-control" id="usernameInput" type="text" name="username" placeholder="请输入邮箱"
+                       data-parsley-trigger="blur"
+                       data-parsley-required="true" data-parsley-required-message="账号不能为空"
+                       data-parsley-maxlength="64" data-parsley-maxlength-message="账号不得超过64个字符"
+                       data-parsley-type="email" data-parsley-type-message="账号必须是有效邮箱">
+            </div>
+            <div class="form-group parsley-form-group">
+                <label class="col-form-label" for="passwordInput">密码</label>
+                <input class="form-control" id="passwordInput" type="password" name="password" placeholder="请输入密码"
+                       data-parsley-trigger="blur"
+                       data-parsley-required="true" data-parsley-required-message="密码不能为空">
+            </div>
+            <div class="form-group">
+                <div class="utility">
+                    <div class="animated-checkbox">
+                        <label><input name="remember_token" type="checkbox"><span class="label-text">记住登录</span></label>
+                    </div>
+                    <p class="semibold-text mb-2"><a href="javascript:">忘记密码 ?</a></p>
+                </div>
+            </div>
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block js-btn-submit">
+                    <i class="fi fi-login"></i>登录
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{{//脚本}}
+{{if condition="isset($_gStaticFiles['scripts'])"}}
+    {{foreach $_gStaticFiles['scripts'] as $scriptSrc}}
+        <script src="{{$scriptSrc}}"></script>
+    {{/foreach}}
+{{/if}}
+<script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+</body>
+</html>

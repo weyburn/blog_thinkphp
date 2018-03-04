@@ -1,0 +1,31 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}分类{{/block}}
+
+{{block name="moduleName"}}category{{/block}}
+{{block name="pageName"}}show{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里是头部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+{{block name="mainInner"}}
+    <section class="category">
+        <dl class="category-list">
+            <dt>
+                <h2 class="category-name">{{$category->name}}<small>分类</small></h2>
+            </dt>
+            {{if condition="count($category->publishedPosts)"}}
+                {{foreach $category->publishedPosts as $post}}
+                    <dd>
+                        <span class="date" title="{{$post->published_at|substr=0,10}}">{{$post->published_at|substr=5,5}}</span>
+                        <a class="link" href="{{$Request.root.true}}/post/{{$post->title}}">{{$post->title}}</a>
+                    </dd>
+                {{/foreach}}
+            {{/if}}
+        </dl>
+    </section>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里是尾部，可以引入需要的 JS 、 CSS}}
+{{/block}}

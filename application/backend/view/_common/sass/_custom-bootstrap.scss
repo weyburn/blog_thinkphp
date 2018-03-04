@@ -1,0 +1,24 @@
+// 主题颜色
+$primary: #3888d6;
+
+// 覆盖基本样式
+$font-size-base: .875rem;
+$link-color: $primary;
+$headings-font-weight: bold;
+
+// 覆盖下拉菜单样式
+$dropdown-padding-y: 0;
+$dropdown-spacer: 0;
+$dropdown-border-width: 0;
+$dropdown-item-padding-y: .5rem;
+$dropdown-item-padding-x: 1rem;
+
+// 覆盖按钮样式
+$btn-font-weight: 700;
+$btn-transition: box-shadow 0.3s cubic-bezier(0.35, 0, 0.25, 1), transform 0.2s cubic-bezier(0.35, 0, 0.25, 1), background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+// 覆盖表单样式
+$input-focus-border-color: $primary;
+$input-btn-border-width: 2px;
+$input-btn-focus-box-shadow: none;
+$input-btn-focus-width: 0;

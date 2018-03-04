@@ -1,0 +1,64 @@
+/* 页面公共样式*/
+::selection {
+    color: #FFF;
+    background-color: darken(#3888d6, 10%);
+}
+
+.app {
+    @media (min-width: 768px) {
+        &.sidenav-toggled {
+            .app-content {
+                margin-left: 0;
+            }
+            .app-sidebar {
+                left: -230px;
+            }
+            .app-sidebar__overlay {
+                visibility: hidden;
+            }
+        }
+    }
+    @media(max-width: 768px) {
+        overflow-x: hidden;
+        .app-sidebar {
+            left: -230px;
+        }
+        .app-sidebar__overlay {
+            visibility: hidden;
+        }
+        &.sidenav-toggled {
+            .app-content {
+                margin-left: 0;
+            }
+            .app-sidebar {
+                left: 0;
+            }
+            .app-sidebar__overlay {
+                visibility: visible;
+            }
+        }
+    }
+
+}
+
+.app-content {
+    min-height: calc(100vh - 50px);
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #E5E5E5;
+    @media(min-width: 768px) {
+        margin-left: 230px;
+    }
+    @media(max-width: 768px) {
+        margin-top: 50px;
+        min-width: 100%;
+    }
+    @media(max-width: 480px) {
+        padding: 15px;
+    }
+    @media print {
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+    }
+}

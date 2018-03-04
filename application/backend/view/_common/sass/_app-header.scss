@@ -1,0 +1,117 @@
+/* 顶部导航栏*/
+.app-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    background-color: #3888d6;
+    z-index: 1030;
+    padding-right: 15px;
+    @media(min-width: 768px) {
+        padding-right: 30px
+    }
+    @media print {
+        display: none;
+    }
+}
+
+.app-header__logo {
+    flex: 1 0 auto;
+    color: #fff;
+    text-align: center;
+    padding: 0 15px;
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 50px;
+    @media(min-width: 768px) {
+        flex: 0 0 auto;
+        display: block;
+        width: 230px;
+        background-color: darken(#3888d6, 5%);
+    }
+    &:focus, &:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.app-sidebar__toggle {
+    color: #fff;
+    padding: 0 15px;
+    font-size: 1.25rem;
+    line-height: 2.5;
+    transition: background-color 0.3s ease;
+    @media(max-width: 768px) {
+        order: -1;
+    }
+    &:focus, &:hover {
+        color: #fff;
+        background-color: darken(#3888d6, 10);
+        text-decoration: none;
+    }
+    .app-sidebar__toggle__icon {
+        font-size: inherit !important;
+        line-height: inherit;
+    }
+}
+
+.app-nav {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+    justify-content: flex-end;
+    @media(min-width: 768px) {
+        flex: 1 0 auto;
+    }
+}
+
+.app-nav__item {
+    display: block;
+    padding: 15px;
+    line-height: 20px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    &:hover, &:focus {
+        background: rgba(0, 0, 0, 0.1);
+        color: #f6f6f6;
+        text-decoration: none;
+    }
+}
+
+.app-search {
+    position: relative;
+    display: flex;
+    align-self: center;
+    margin-right: 15px;
+    padding: 10px 0;
+    @media(max-width: 480px) {
+        display: none;
+    }
+}
+
+.app-search__input {
+    border: 0;
+    padding: 5px 10px;
+    padding-right: 30px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.3s ease;
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+    }
+}
+
+.app-search__button {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    bottom: 10px;
+    padding: 0 10px;
+    border: 0;
+    color: rgba(0, 0, 0, 0.8);
+    background: none;
+    cursor: pointer;
+}

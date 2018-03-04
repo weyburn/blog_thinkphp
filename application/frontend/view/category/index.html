@@ -1,0 +1,32 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}分类{{/block}}
+
+{{block name="moduleName"}}category{{/block}}
+{{block name="pageName"}}index{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里是头部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+{{block name="mainInner"}}
+    <section class="category">
+        <div class="category-header">
+            <h1 class="title">分类</h1>
+            <p class="total">【目前共计 {{$categories|count}} 个分类】</p>
+        </div>
+        {{if condition="count($categories)"}}
+            <ul class="category-list">
+                {{foreach $categories as $category}}
+                    <li class="category-item">
+                        <a class="link" href="{{$Request.root.true}}/category/{{$category->name}}">{{$category->name}}</a>
+                        <span class="post-count">( {{$category->publishedPosts|count}} )</span>
+                    </li>
+                {{/foreach}}
+            </ul>
+        {{/if}}
+    </section>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里是尾部，可以引入需要的 JS 、 CSS}}
+{{/block}}

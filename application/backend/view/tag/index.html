@@ -1,0 +1,105 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}标签{{/block}}
+
+{{block name="moduleName"}}tag{{/block}}
+{{block name="pageName"}}index{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里的内容会填充在 head 里}}
+{{/block}}
+
+{{block name="main"}}
+    {{//面包屑导航}}
+    <div class="app-title">
+        <h1>
+            <i class="fi fi-tag"></i>标签列表
+        </h1>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin"><i class="fi fi-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="{{$Request.root.true}}/admin/tag">标签管理</a></li>
+            <li class="breadcrumb-item active">标签列表</li>
+        </ul>
+    </div>
+    {{//标签信息表格}}
+    <div class="row">
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-header">
+                    <button class="btn btn-dark btn-sm js-btn-get-check">获取选中id</button>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover tag-list">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">
+                                    <div class="animated-checkbox">
+                                        <label class="form-check-label">
+                                            <input class="tag-all-check" type="checkbox">
+                                            <span class="label-text"></span>
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">#</th>
+                                <th scope="col">标签名称</th>
+                                <th scope="col">文章数目</th>
+                                <th scope="col">创建时间</th>
+                                <th scope="col">修改时间</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{if condition="count($tags)"}}
+                                {{foreach $tags as $tag}}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="animated-checkbox">
+                                                <label class="form-check-label">
+                                                    <input class="tag-check" type="checkbox" value="{{$tag->id}}">
+                                                    <span class="label-text"></span>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <th>{{$tag->id}}</th>
+                                        <td>{{$tag->name}}</td>
+                                        <td>{{$tag->posts|count}}篇</td>
+                                        <td title="{{$tag->created_at}}">
+                                            {{$tag->created_at|substr=0,10}}
+                                        </td>
+                                        <td title="{{$tag->updated_at}}">
+                                            {{$tag->updated_at|substr=0,10}}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-outline-primary" role="button"
+                                               href="{{$Request.root.true}}/admin/tag/{{$tag->id}}">
+                                                <i class="fi fi-details"></i>详情
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-info" role="button"
+                                               href="{{$Request.root.true}}/admin/tag/{{$tag->id}}/edit">
+                                                <i class="fi fi-edit"></i>编辑
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-danger js-btn-delete" role="button"
+                                               href="javascript:" data-m-id="{{$tag->id}}"
+                                               data-post-count="{{$tag->posts|count}}">
+                                                <i class="fi fi-delete"></i>删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {{/foreach}}
+                            {{else/}}
+                                <tr>
+                                    <td colspan="100%" class="text-center">暂无标签记录</td>
+                                </tr>
+                            {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里的内容会填充在 body 底部上面}}
+{{/block}}

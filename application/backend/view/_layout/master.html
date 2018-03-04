@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="keywords" content="Weyburn, Weyburn's Blog">
+    <meta name="description" content="个人博客, 技术博客, 前端学习总结">
+    <meta name="apple-mobile-web-app-title" content="Weyburn">
+    <meta name="application-name" content="Weyburn's Blog">
+
+    <link rel="shortcut icon" href="/assets/images/head-pic.jpg">
+
+    <title>
+        {{block name="headTitle"}}{{/block}} - Weyburn's Blog Backend
+    </title>
+
+    {{//样式}}
+    {{if condition="isset($_gStaticFiles['styles'])"}}
+        {{foreach $_gStaticFiles['styles'] as $style}}
+            <link rel="stylesheet" href="{{$style}}">
+        {{/foreach}}
+    {{/if}}
+    <link href="https://cdn.bootcss.com/pace/1.0.2/themes/black/pace-theme-minimal.css" rel="stylesheet">
+    {{block name="headAssets"}}{{/block}}
+</head>
+<body class="app sidebar-mini page page--{{block name='moduleName'}}{{/block}}
+page--{{block name='moduleName'}}{{/block}}-{{block name='pageName'}}{{/block}} {{block name='bodyClassExt'}}{{/block}}"
+      id="page--{{block name='moduleName'}}{{/block}}-{{block name='pageName'}}{{/block}}"
+      data-module-name="{{block name='moduleName'}}{{/block}}"
+      data-page-name="{{block name='pageName'}}{{/block}}"
+      data-base-url="{{$Request.root.true}}"
+      data-end-url="{{$Request.root.true}}/admin"
+      data-current-url="{{$Request.root.true}}/{{$Request.path}}">
+data-m-id="{{block name='mId'}}{{/block}}" data-m-name="{{block name='mName'}}{{/block}}">
+
+{{block name="header"}}
+    {{//头部}}
+    <header class="app-header">
+        {{//logo}}
+        <a class="app-header__logo" href="{{$Request.root.true}}/admin">Admin</a>
+        {{//toggle}}
+        <a class="app-sidebar__toggle" href="javascript:" data-toggle="sidebar">
+            <i class="app-sidebar__toggle__icon fi fi-toggle"></i>
+        </a>
+        {{//导航栏}}
+        <ul class="app-nav">
+            {{//搜索框}}
+            <li class="app-search">
+                <input class="app-search__input" type="search" placeholder="请输入搜索内容">
+                <button class="app-search__button" type="button">
+                    <i class="fi fi-search"></i>
+                </button>
+            </li>
+            {{//下拉框}}
+            <li class="dropdown">
+                <a class="app-nav__item" href="javascript:" data-toggle="dropdown">
+                    <i class="fi fi-user"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a class="dropdown-item" href="{{$Request.root.true}}">
+                            <i class="fi fi-external-link"></i>前台
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:">
+                            <i class="fi fi-refresh"></i>清除缓存
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{$Request.root.true}}/admin/logout">
+                            <i class="fi fi-logout"></i>登出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+{{/block}}
+
+{{block name="sidebar"}}
+    {{//侧边栏}}
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+        {{//用户简介}}
+        <div class="app-sidebar__user">
+            <img class="app-sidebar__user-avatar" src="/assets/images/admin-pic.svg" alt="admin-pic">
+            <div>
+                <span class="app-sidebar__user-name">Weyburn</span>
+                <span class="app-sidebar__user-designation">Frontend Developer</span>
+            </div>
+        </div>
+        {{//菜单栏}}
+        <ul class="app-menu">
+            <li class="treeview {{$Request.controller == 'Post' ? 'is-expanded': ''}}">
+                <a class="app-menu__item" href="javascript:" data-toggle="treeview">
+                    <i class="app-menu__icon fi fi-post"></i>
+                    <span class="app-menu__label">博客</span>
+                    <i class="treeview-indicator fi fi-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Post' && $Request.action != 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/post">
+                            <i class="icon fi fi-circle"></i>文章列表
+                        </a>
+                    </li>
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Post' && $Request.action == 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/post/create">
+                            <i class="icon fi fi-circle"></i>新增文章
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview {{$Request.controller == 'Category' ? 'is-expanded': ''}}">
+                <a class="app-menu__item" href="javascript:" data-toggle="treeview">
+                    <i class="app-menu__icon fi fi-category"></i>
+                    <span class="app-menu__label">分类</span>
+                    <i class="treeview-indicator fi fi-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Category' && $Request.action != 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/category">
+                            <i class="icon fi fi-circle"></i>分类列表
+                        </a>
+                    </li>
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Category' && $Request.action == 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/category/create">
+                            <i class="icon fi fi-circle"></i>新增分类
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview {{$Request.controller == 'Tag' ? 'is-expanded': ''}}">
+                <a class="app-menu__item" href="javascript:" data-toggle="treeview">
+                    <i class="app-menu__icon fi fi-tag"></i>
+                    <span class="app-menu__label">标签</span>
+                    <i class="treeview-indicator fi fi-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Tag' && $Request.action != 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/tag">
+                            <i class="icon fi fi-circle"></i>标签列表
+                        </a>
+                    </li>
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Tag' && $Request.action == 'create' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/tag/create">
+                            <i class="icon fi fi-circle"></i>新增标签
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview {{$Request.controller == 'Comment' ? 'is-expanded': ''}}">
+                <a class="app-menu__item" href="javascript:" data-toggle="treeview">
+                    <i class="app-menu__icon fi fi-comment"></i>
+                    <span class="app-menu__label">评论</span>
+                    <i class="treeview-indicator fi fi-angle-right"></i>
+                </a>
+                <ul class="treeview-menu {{$Request.controller == 'Comment' ? 'is-expanded': ''}}">
+                    <li>
+                        <a class="treeview-item {{$Request.controller == 'Comment' ? 'active' : ''}}"
+                           href="{{$Request.root.true}}/admin/comment">
+                            <i class="icon fi fi-circle"></i>评论列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+{{/block}}
+
+<main class="app-content main">
+    {{block name="main"}}{{/block}}
+</main>
+
+{{//脚本}}
+{{if condition="isset($_gStaticFiles['scripts'])"}}
+    {{foreach $_gStaticFiles['scripts'] as $scriptSrc}}
+        <script src="{{$scriptSrc}}"></script>
+    {{/foreach}}
+{{/if}}
+<script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+{{block name="bodyAssets"}}{{/block}}
+</body>
+</html>

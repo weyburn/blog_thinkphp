@@ -1,0 +1,61 @@
+<div id="comments">
+    {{if condition="count($post->comments)"}}
+        <h2 class="comment-title">目前有{{$post->comments|count}}条评论</h2>
+        <ul class="comment-list">
+            {{foreach $post->comments as $comment}}
+                <li class="comment-item" id="comment-{{$comment->id}}">
+                    <div class="comment-author">
+                        <img class="avatar" src="/assets/images/commenter-pic.svg" alt="commenter-pic">
+                        <span class="name">{{$comment->name|htmlspecialchars}}</span>
+                    </div>
+                    <div class="comment-content">
+                        {{notempty name="$comment->reply_id"}}
+                            <a class="reply" href="#comment-{{$comment->reply_id}}">@ {{$comment->reply_name}}</a>
+                        {{/notempty}}
+                        {{$comment->content|htmlspecialchars}}
+                    </div>
+                    <div class="comment-meta">
+                        <span class="time">{{$comment->created_at}}</span>
+                        <a class="js-btn-reply" href="javascript:"
+                           data-reply-id="{{$comment->id}}" data-reply-name="{{$comment->name}}">回复TA</a>
+                    </div>
+                </li>
+            {{/foreach}}
+        </ul>
+    {{/if}}
+    <h2 class="comment-title">添加评论</h2>
+    <div class="btn-group">
+        <a class="js-btn-reply-cancel" href="javascript:">取消回复</a>
+    </div>
+    <form class="comment-form" onsubmit="return false" data-post-id="{{$post->id}}" data-reply-id="" data-reply-name="" data-parsley-validate>
+        <div class="form-group parsley-form-group">
+            <label class="required" for="nameInput">称呼</label>
+            <input class="form-control" id="nameInput" type="text" name="name" data-parsley-trigger="blur"
+                   data-parsley-required="true" data-parsley-required-message="称呼为必填项"
+                   data-parsley-maxlength="40" data-parsley-maxlength-message="称呼不得超过40个字符">
+        </div>
+        <div class="form-group parsley-form-group">
+            <label class="required" for="emailInput">邮箱</label>
+            <input class="form-control" id="emailInput" type="text" name="email" data-parsley-trigger="blur"
+                   data-parsley-required="true" data-parsley-required-message="邮箱为必填项"
+                   data-parsley-type="email"  data-parsley-type-message="请输入有效的电子邮箱"
+                   data-parsley-maxlength="64" data-parsley-maxlength-message="邮箱不得超过64个字符">
+        </div>
+        <div class="form-group parsley-form-group">
+            <label for="websiteInput">网址</label>
+            <input class="form-control" id="websiteInput" type="text" name="website" placeholder="http://" data-parsley-trigger="blur"
+                   data-parsley-type="url"  data-parsley-type-message="请输入有效的网址"
+                   data-parsley-maxlength="120" data-parsley-maxlength-message="邮箱不得超过120个字符">
+        </div>
+        <div class="form-group parsley-form-group">
+            <label class="required" for="contentInput">内容</label>
+            <textarea class="form-control" id="contentInput" name="content" placeholder="说说你的看法" rows="10" data-parsley-trigger="blur"
+                      data-parsley-required="true" data-parsley-required-message="内容为必填项"
+                      data-parsley-maxlength="300" data-parsley-maxlength-message="内容不得超过300个字符"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-secondary js-btn-submit">提交评论</button>
+        </div>
+    </form>
+</div>
+

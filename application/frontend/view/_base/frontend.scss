@@ -1,0 +1,60 @@
+@import "../../../../public/assets/font/fi/iconfont.css";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+// 覆盖默认变量
+$body-bg: #f5f5f5;
+$body-color: #555;
+$grid-gutter-width: 0;
+$link-color: #555;
+$link-decoration: none;
+$link-hover-color: #222;
+$link-hover-decoration: none;
+$code-color: #555;
+$code-bg: $gray-200;
+$btn-font-weight: 600;
+$input-btn-border-width: 2px;
+$input-focus-border-color: #8dbbe7;
+$input-btn-focus-box-shadow: none;
+$input-btn-focus-width: 0;
+
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+
+
+#wrapper {
+    @include make-row();
+    @include media-breakpoint-up(lg) {
+        width: 960px;
+        margin: 0 auto;
+    }
+}
+
+#header {
+    @include make-col-ready();
+    @include media-breakpoint-up(lg) {
+        @include make-col(3);
+    }
+}
+
+#main {
+    @include make-col-ready();
+    @include media-breakpoint-up(lg) {
+        @include make-col(9);
+        padding-left: 20px;
+    }
+}
+
+#footer {
+    @include make-col-ready();
+    @include media-breakpoint-up(lg) {
+        @include make-col-offset(3);
+    }
+}

@@ -1,0 +1,31 @@
+{{extend name="_layout/master"}}
+{{block name="headTitle"}}标签{{/block}}
+
+{{block name="moduleName"}}tag{{/block}}
+{{block name="pageName"}}show{{/block}}
+
+{{block name="headAssets"}}
+    {{//这里是头部，可以引入需要的 JS 、 CSS}}
+{{/block}}
+
+{{block name="mainInner"}}
+    <section class="tag">
+        <dl class="tag-list">
+            <dt>
+                <h2 class="tag-name">{{$tag->name}}<small>标签</small></h2>
+            </dt>
+            {{if condition="count($tag->publishedPosts)"}}
+                {{foreach $tag->publishedPosts as $post}}
+                    <dd>
+                        <span class="date" title="{{$post->published_at|substr=0,10}}">{{$post->published_at|substr=5,5}}</span>
+                        <a class="link" href="{{$Request.root.true}}/post/{{$post->title}}">{{$post->title}}</a>
+                    </dd>
+                {{/foreach}}
+            {{/if}}
+        </dl>
+    </section>
+{{/block}}
+
+{{block name="bodyAssets"}}
+    {{//这里是尾部，可以引入需要的 JS 、 CSS}}
+{{/block}}

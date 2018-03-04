@@ -1,0 +1,13 @@
+<?php
+return [
+    'scripts' => [
+      <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+        '<%= htmlWebpackPlugin.files.chunks[chunk].entry %>',
+      <% } %>
+    ],
+    'styles' => [
+      <% for (var css in htmlWebpackPlugin.files.css) { %>
+        '<%= htmlWebpackPlugin.files.css[css] %>',
+      <% } %>
+    ],
+];

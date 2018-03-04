@@ -1,0 +1,14 @@
+@import "~summernote/dist/summernote-bs4.css";
+
+.note-toolbar-wrapper {
+    height: auto !important;
+}
+
+.page--post-create,.page--post-edit {
+    .btn-group-toggle {
+        label.btn {
+            border-style: dotted;
+            border-radius: 30px;
+        }
+    }
+}
