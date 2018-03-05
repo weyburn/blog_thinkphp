@@ -5,6 +5,7 @@ namespace app\backend\controller;
 use app\backend\model\Category as CategoryModel;
 use  app\backend\model\Post as PostModel;
 use app\backend\model\Tag as TagModel;
+use think\Db;
 
 /**
  * 文章控制器
@@ -110,20 +111,29 @@ class Post extends BackendBase
             $post->published_at = date('Y-m-d H:i:s', time());
         }
 
-        if ($post->allowField(true)->save()) {
-            // 新增文章成功
+        // 启动数据库事务
+        Db::startTrans();
+
+        try {
+            $post->allowField(true)->save();
+            // 如果设置选择了标签
             if (isset($data['tag_id'])) {
                 $post->tags()->saveAll($data['tag_id']);
             }
+            // 提交事务
+            Db::commit();
+            // 新增文章成功
             return json([
                 'status' => 200,
                 'message' => '新增成功'
             ]);
-        } else {
+        } catch (\Exception $exception) {
+            // 回滚事务
+            Db::rollback();
             // 新增文章失败
             return json([
                 'status' => 400,
-                'message' => '新增失败'
+                'message' => '新增文章失败'
             ]);
         }
     }
@@ -200,26 +210,30 @@ class Post extends BackendBase
             $post->published_at = date('Y-m-d H:i:s', time());
         }
 
-        // 更新中间表
-        $oldTagArr = $post->tags->column('id');
-        $newTagArr = isset($data['tag_id']) ? $data['tag_id'] : [];
-        $detachTagArr = array_diff($oldTagArr, $newTagArr);
-        $saveTagArr = array_diff($newTagArr, $oldTagArr);
-        if (!is_null($detachTagArr)) {
-            $post->tags()->detach($detachTagArr);
-        }
-        if (!is_null($saveTagArr)) {
-            $post->tags()->saveAll($saveTagArr);
-        }
-
-
-        if ($post->save() !== false) {
+        // 启动数据库事务
+        Db::startTrans();
+        try {
+            $post->save();
+            // 判断中间表要删除的关联和要增加的关联
+            $oldTagArr = $post->tags->column('id');
+            $newTagArr = isset($data['tag_id']) ? $data['tag_id'] : [];
+            $detachTagArr = array_diff($oldTagArr, $newTagArr);
+            $saveTagArr = array_diff($newTagArr, $oldTagArr);
+            if (!is_null($detachTagArr)) {
+                $post->tags()->detach($detachTagArr);
+            }
+            if (!is_null($saveTagArr)) {
+                $post->tags()->saveAll($saveTagArr);
+            }
+            // 提交事务
+            Db::commit();
             // 新增文章成功
             return json([
                 'status' => 200,
                 'message' => '修改成功'
             ]);
-        } else {
+        } catch (\Exception $exception) {
+            Db::rollback();
             // 更新文章失败
             return json([
                 'status' => 400,
