@@ -17,7 +17,7 @@ class Tag extends Model
     public function publishedPosts()
     {
         return $this->belongsToMany('Post','post_tag')->where('status', 1)
-            ->order('published_at', 'desc')->field('id,title,published_at');
+            ->order('published_at', 'desc')->field('title,published_at');
     }
 }
 

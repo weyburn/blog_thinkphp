@@ -19,6 +19,6 @@ class Category extends Model
     {
         return $this->hasMany('Post', 'category_id')
             ->where('status', 1)->order('published_at', 'desc')
-            ->field('id,title,published_at');
+            ->field('title,published_at');
     }
 }

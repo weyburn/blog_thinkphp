@@ -233,6 +233,7 @@ class Post extends BackendBase
                 'message' => '修改成功'
             ]);
         } catch (\Exception $exception) {
+            // 回滚事务
             Db::rollback();
             // 更新文章失败
             return json([
@@ -254,12 +255,25 @@ class Post extends BackendBase
     {
         $post = PostModel::get($id);
 
-        if ($post->delete()) {
+        // 启动数据库事务
+        Db::startTrans();
+
+        try {
+            $post->tags()->detach();
+            $post->comments()->delete();
+            $post->delete();
+
+            // 提交事务
+            Db::commit();
+            // 删除文章成功
             return json([
                 'status' => 200,
                 'message' => '删除成功'
             ]);
-        } else {
+        } catch (\Exception $exception) {
+            // 回滚事务
+            Db::rollback();
+            // 删除文章失败
             return json([
                 'status' => 400,
                 'message' => '删除失败'
