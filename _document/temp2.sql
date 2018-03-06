@@ -135,5 +135,5 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户表';
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-  (1, 'weyburn', '695397572@qq.com', '$2a$08$TJAvfU70SOBUvKhdYN7Q/.uTJePQly4cGV7U71shgIbEjzVFtgvb.', 'GwY45OToCpx0orhBP3jdzcF7jcelHJOkkIQe4nwGE9CDqfwz7zWpDes1LYp6', '2018-02-07 07:42:01', '2018-02-07 07:58:45', NULL);
+  (1, 'weyburn', 'weyburn@126.com', '$2a$08$T6ZdAYt./FB1/fZoR4Qj6.Kh.T4Ihg2xpNBwBG7XkFSxofp.yzeT2', 'GwY45OToCpx0orhBP3jdzcF7jcelHJOkkIQe4nwGE9CDqfwz7zWpDes1LYp6', '2018-02-07 07:42:01', '2018-02-07 07:58:45', NULL);
 -- --------------------------------------------------------

@@ -21,17 +21,17 @@ class Auth extends BackendBase
     {
         // 新增数据
 //        $passwordHasher = new PasswordHash(8, false);
-//        $hashPassword = $passwordHasher->HashPassword('123456');
+//        $hashPassword = $passwordHasher->HashPassword('12345678');
 //        $user = UserModel::create([
 //            'name' => 'weyburn',
-//            'email' => 'weyburn@126.com',
+//            'email' => '695397572@qq.com',
 //            'password' => $hashPassword
 //        ]);
 //        dump($user);
 
         // 更新数据
 //        $user = UserModel::where('name', 'weyburn')->update([
-//            'email' => '695397572@qq.com'
+//            'email' => 'weyburn@126.com'
 //        ]);
 //        dump($user);
 
