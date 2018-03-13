@@ -47,29 +47,54 @@
     .post-body {
         text-align: justify;
         line-height: 2;
-        h2 {
-            font-size: 1.25rem;
+        h1, h2, h3, h4, h5, h6 {
             font-weight: bold;
+            margin-bottom: 1rem;
         }
-        p, figure {
+        h2 {
+            font-size: 1.375rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+        }
+        h4 {
+            font-size: 1.125rem;
+        }
+        h5 {
+            font-size: 1rem;
+        }
+        h6 {
             font-size: .875rem;
-            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        .blockquote {
+            border-left: 3px solid #ccc;
+            padding: 12px 16px;
+            margin-top: 40px;
+            background-color: #f9f9f9;
+            font-size: .875rem;
+        }
+        p, figure, ul,ol,dl {
+            font-size: .875rem;
+            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;;
+        }
+        ul {
+            list-style: circle;
         }
         figure {
             img {
                 width: 100%;
-                cursor: zoom-in;
             }
             figcaption {
                 font-weight: 600;
                 text-align: center;
                 color: #888;
-                cursor: pointer;
             }
         }
         a:not(.link) {
             border-bottom: 1px solid #888;
             padding-bottom: 1px;
+            word-break: break-all;
+            word-wrap: break-word;
             &:hover {
                 border-color: #222;
             }
@@ -87,6 +112,7 @@
             border-bottom: 1px dotted #888;
             padding: 4px;
             margin: 4px 8px;
+            word-wrap: break-word;
             i {
                 font-size: inherit;
                 margin-right: 4px;

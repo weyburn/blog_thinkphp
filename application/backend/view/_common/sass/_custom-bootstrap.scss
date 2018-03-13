@@ -13,6 +13,10 @@ $dropdown-border-width: 0;
 $dropdown-item-padding-y: .5rem;
 $dropdown-item-padding-x: 1rem;
 
+// 覆盖代码块颜色
+$code-color: #555;
+$code-bg: #e9ecef;
+
 // 覆盖按钮样式
 $btn-font-weight: 700;
 $btn-transition: box-shadow 0.3s cubic-bezier(0.35, 0, 0.25, 1), transform 0.2s cubic-bezier(0.35, 0, 0.25, 1), background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
